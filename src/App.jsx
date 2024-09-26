@@ -3,7 +3,6 @@ import { useState } from 'react'
 import {InputBox} from "./components/Index"
 import useCurrencyConvt from './hooks/useCurrencyConvt'
 function App() {
-  const [count, setCount] = useState(0)
   const [amount,setAmount]=useState(0)
   const [from,setFrom]=useState("usd")
   const [to,setTo]=useState("usd")
@@ -11,7 +10,7 @@ function App() {
 
   const currencyInfo=useCurrencyConvt(from);
 
-  const options=Object.keys(currencyInfo)
+  const options=Object.keys(currencyInfo)//It will display all keys value of object
 
   const swap=()=>{
     setFrom(to)
@@ -21,9 +20,9 @@ function App() {
   }
 
   
-
+console.log(currencyInfo["ada"])
   const convert =()=>{
-    setConvertedAmount(amount*currencyInfo[to])
+    setConvertedAmount(amount*currencyInfo[to])//This function is multiplying amount with the value that comes from object which is [currencyInfo] which has data like {"pkr":1212,"usd",123} , "to" here is the selected currency code use to extract value.
   }
 
 
@@ -45,11 +44,11 @@ function App() {
                 >
                     <div className="w-full mb-1">
                         <InputBox
-                            label="From"
+                            label="From" //Ye Label bhej raha he.
                             // Below amount is a single variable.
                             amount={amount}
                             currencyOptions={options}
-                            onCurrencyChange={(currency)=>setAmount(amount)}
+                            onCurrencyChange={(currency)=>setFrom(currency)}
                             selectCurrency={from}
                             onAmountChange={(amount)=>setAmount(amount)}
                         />
@@ -70,7 +69,7 @@ function App() {
                             amount={convertedAmount}
                             currencyOptions={options}
                             onCurrencyChange={(currency)=>setTo(currency)}
-                            selectCurrency={from}
+                            selectCurrency={to}
                             
                         />
                     </div>
